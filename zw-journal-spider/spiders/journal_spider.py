@@ -10,7 +10,6 @@ Created on 2021-04-12 14:56:40
 import feapder
 from feapder.utils import tools
 
-import setting
 from items import *
 
 
@@ -18,16 +17,24 @@ class JournalSpider(feapder.BatchSpider):
     def start_requests(self, task):
         yield feapder.Request(task.url, task_id=task.id)
 
+    def validate(self, request, response):
+        if "Validate" in response.url:
+            raise Exception("验证码")
+        if "暂无目录信息" in response.text:
+            print("暂无目录信息")
+            return
+
+        if "<script>window.location.href='//www.cnki.net'</script>" in response.text:
+            raise Exception("跳转到首页")
+
     def parse(self, request, response):
         pykm = tools.get_param(request.url, "pykm")
         pcode = tools.get_param(request.url, "pcode")
         years = response.xpath(
             '//dt[@onclick="JournalDetail.BindYearClick(this);"]/em/text()'
         ).extract()
-        for year in years:
-            if setting.SPIDER_YEARS and year not in setting.SPIDER_YEARS:
-                continue
 
+        for year in years:
             url = f"https://navi.cnki.net/knavi/JournalDetail/GetArticleList?year={year}&issue=S1&pykm={pykm}&&pageIdx=0&pcode={pcode}"
             yield feapder.Request(
                 url, priority=1, callback=self.parse_detail, task_id=request.task_id
@@ -36,9 +43,6 @@ class JournalSpider(feapder.BatchSpider):
         yield self.update_task_batch(request.task_id, 1)
 
     def parse_detail(self, request, response):
-        if "Validate" in response.url:
-            raise Exception("验证码")
-
         rows = response.xpath('//dd[starts-with(@class,"row clearfix")]')
         for row in rows:
             title = (
@@ -64,10 +68,3 @@ class JournalSpider(feapder.BatchSpider):
             item.task_id = request.task_id
 
             yield item
-
-    # def crack_verification_code(self, request, response):
-    #     url = "https://navi.cnki.net/knavi/Home/GetImg?t=1618214235940"
-    #     url = "https://navi.cnki.net/knavi/Home/ValidateCode"
-    #     data = {
-    #         "code": "xxxx"
-    #     }

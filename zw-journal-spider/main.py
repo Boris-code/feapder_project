@@ -21,7 +21,7 @@ def crawl_journal(args):
         task_table="zw_journal_task",  # mysql中的任务表
         batch_record_table="zw_journal_batch_record",  # mysql中的批次记录表
         batch_name="知网期刊",  # 批次名字
-        batch_interval=7,  # 批次时间 天为单位 若为小时 可写 1 / 24
+        batch_interval=36500,  # 批次时间 天为单位 若为小时 可写 1 / 24
         task_keys=["id", "url"],  # 需要获取任务表里的字段名，可添加多个
         redis_key="zw:journal",  # redis中存放request等信息的根key
         task_state="state",  # mysql中任务状态字段
@@ -31,6 +31,8 @@ def crawl_journal(args):
         spider.start_monitor_task()
     elif args == 2:
         spider.start()
+    elif args == 3:
+        spider.init_task()
 
 
 if __name__ == "__main__":

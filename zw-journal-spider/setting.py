@@ -2,8 +2,6 @@
 """爬虫配置文件"""
 import os
 
-SPIDER_YEARS = [] # ["2020", "2021"]
-
 # MYSQL
 MYSQL_IP = "localhost"
 MYSQL_PORT = 3306
@@ -28,7 +26,7 @@ COLLECTOR_SLEEP_TIME = 1  # 从任务队列中获取任务到内存队列的间�
 COLLECTOR_TASK_COUNT = 100  # 每次获取任务数量
 
 # SPIDER
-SPIDER_THREAD_COUNT = 100  # 爬虫并发数
+SPIDER_THREAD_COUNT = 10  # 爬虫并发数
 SPIDER_SLEEP_TIME = 0  # 下载时间间隔（解析完一个response后休眠时间）
 SPIDER_MAX_RETRY_TIMES = 100  # 每个请求最大重试次数
 WARNING_FAILED_COUNT = 1000  # 任务失败数 超过WARNING_FAILED_COUNT则报警
@@ -88,5 +86,5 @@ WARNING_FAILED_COUNT = 1000  # 任务失败数 超过WARNING_FAILED_COUNT则报�
 #
 # LOG_NAME = os.path.basename(os.getcwd())
 # LOG_PATH = "log/%s.log" % LOG_NAME  # log存储路径
-# LOG_LEVEL = "DEBUG"
+LOG_LEVEL = "INFO"
 # LOG_IS_WRITE_TO_FILE = False
