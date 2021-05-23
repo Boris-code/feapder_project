@@ -19,4 +19,13 @@ class AirSpiderDemo(feapder.AirSpider):
 
 
 if __name__ == "__main__":
-    AirSpiderDemo().start()
+    # 循环运行，本次结束后马上开始下一次
+    spider = AirSpiderDemo()
+    while True:
+        spider.start()
+        spider.join() # 等待结束
+
+    # 直接开启10个爬虫
+    # for i in range(10):
+    #     spider = AirSpiderDemo()
+    #     spider.start()
