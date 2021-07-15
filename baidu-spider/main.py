@@ -11,11 +11,11 @@ from spiders import *
 from feapder.utils.custom_argparse import ArgumentParser
 
 
-def baidu_spider1():
+def _baidu_spider1():
     baidu_spider.BaiduSpider(thread_count=100).start()
 
 
-def baidu_spider2():
+def _baidu_spider2():
     baidu_spider2.BaiduSpider(thread_count=100, redis_key="baidu_spider").start()
 
 
@@ -24,10 +24,10 @@ if __name__ == "__main__":
     parser = ArgumentParser(description="测试")
 
     parser.add_argument(
-        "--baidu_spider", action="store_true", help="", function=baidu_spider
+        "--baidu_spider", action="store_true", help="", function=_baidu_spider1
     )
     parser.add_argument(
-        "--baidu_spider2", action="store_true", help="", function=baidu_spider2
+        "--baidu_spider2", action="store_true", help="", function=_baidu_spider2
     )
 
     parser.start()
