@@ -4,7 +4,7 @@ Created on 2021-03-19 21:48:07
 ---------
 @summary:
 ---------
-@author: liubo
+@author: Boris
 """
 
 from feapder import Item
