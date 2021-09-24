@@ -1,0 +1,5 @@
+matplotlib==3.0.2
+opencv_python
+feapder==1.6.7b3
+scipy==1.7.1
+Pillow==8.3.1

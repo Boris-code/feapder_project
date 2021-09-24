@@ -24,10 +24,10 @@ if __name__ == "__main__":
     parser = ArgumentParser(description="测试")
 
     parser.add_argument(
-        "--baidu_spider", action="store_true", help="", function=_baidu_spider1
+        "--baidu_spider", action="store_true", help="轻量爬虫", function=_baidu_spider1
     )
     parser.add_argument(
-        "--baidu_spider2", action="store_true", help="", function=_baidu_spider2
+        "--baidu_spider2", action="store_true", help="分布式爬虫", function=_baidu_spider2
     )
 
     parser.start()
