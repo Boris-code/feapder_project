@@ -1,1 +1,2 @@
-feapder==1.6.0
+feapder==1.7.5b8
+scrapy_redis
