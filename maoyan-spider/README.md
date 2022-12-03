@@ -1,5 +1,30 @@
 # 猫眼爬虫文档
 
+## 需求
+
+1.  采集各个城市所有热映电影
+
+   ![image-20221203171523466](assets/image-20221203171523466.png)
+
+2. 采集电影详情
+
+   1. 电影院信息
+
+      ![image-20221203165725007](assets/image-20221203165725007.png)
+
+   2. 场次信息
+
+      ![image-20221203165705901](assets/image-20221203165705901.png)
+
+   3. 电影详情
+
+      ![image-20221203171216901](assets/image-20221203171216901.png)
+
+3. 采集开播前五分钟的客座率
+   ![image-20221203171216901](assets/image-20221203171216901.png)
+
+
+
 ## 调研
 
 滑块：
@@ -22,7 +47,7 @@
 ## 爬虫逻辑
 
 1. 读取 maoyan_hot_movie_list_task 任务表，采集热门电影（maoyan_hot_movie_list），同时生产 电影详情采集任务（maoyan_film_detail_task）；采集频率：每天一次；城市在任务表中配置
-    
+   
         # 下发任务给爬虫
         python main.py --crawl_hot_films 1
         # 采集
@@ -45,7 +70,7 @@
 4. 启动滑块破解服务，解封被封掉的ip
 
         python main.py --fuck_captcha
-        
+    
 5. 城市id采集（采集一次即可，作为 maoyan_hot_movie_list_task 里的种子任务）
 
         python main.py --crawl_city

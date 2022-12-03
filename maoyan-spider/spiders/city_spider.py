@@ -9,6 +9,7 @@ Created on 2021-08-29 14:42:44
 
 import feapder
 from items.maoyan_city_item import MaoyanCityItem
+from items.maoyan_hot_movie_list_task_item import MaoyanHotMovieListTaskItem
 
 
 class CitySpider(feapder.AirSpider):
@@ -25,6 +26,11 @@ class CitySpider(feapder.AirSpider):
             item.city_id = city_id
             item.city_name = city_name
             yield item
+
+            # 生成热映电影列表任务
+            list_task_item = MaoyanHotMovieListTaskItem()
+            list_task_item.city_id = city_id
+            yield list_task_item
 
 
 if __name__ == "__main__":

@@ -10,7 +10,7 @@ BRAND_IDS = [-1]
 MYSQL_IP = "localhost"
 MYSQL_PORT = 3306
 MYSQL_DB = "feapder"
-MYSQL_USER_NAME = "feapder"
+MYSQL_USER_NAME = "root"
 MYSQL_USER_PASS = "feapder123"
 
 # # MONGODB
@@ -23,7 +23,7 @@ MYSQL_USER_PASS = "feapder123"
 # # REDIS
 # # ip:port 多个可写为列表或者逗号隔开 如 ip1:port1,ip2:port2 或 ["ip1:port1", "ip2:port2"]
 REDISDB_IP_PORTS = "localhost:6379"
-REDISDB_USER_PASS = ""
+REDISDB_USER_PASS = "123456"
 REDISDB_DB = 0
 # 适用于redis哨兵模式
 REDISDB_SERVICE_NAME = ""
@@ -61,6 +61,7 @@ WEBDRIVER = dict(
     executable_path=None,  # 浏览器路径，默认为默认路径
     render_time=0,  # 渲染时长，即打开网页等待指定时间后再获取源码
     custom_argument=["--ignore-certificate-errors"],  # 自定义浏览器渲染参数
+    auto_install_driver=False,  # 自动下载浏览器驱动 支持chrome 和 firefox
 )
 #
 # # 爬虫启动时，重新抓取失败的requests
